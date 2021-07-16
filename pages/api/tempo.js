@@ -1,16 +1,16 @@
 async function tempo(req, res) {
-    const apiSecret = process.env.CONVERT_API_SECRET;
+    const apiSecret = process.env.CONVERTKIT_API_SECRET;
     const dynamicDate = new Date();
 
-    const subsAPI = await fetch(`https://www.google.com?api_secret=${apiSecret}`);
-    const subsAPIJson = await subsAPI.json();
-    const subs = subsAPIJson.total_subscribers;
+    const subscribersResponse = await fetch(`https://api.convertkit.com/v3/subscribers?api_secret=${apiSecret}`);
+    const subscribersResponseJson = await subscribersResponse.json();
+    const inscritos = subscribersResponseJson.total_subscribers;
 
-    res.setHeader('Cache-Control', 's-manage=10, stale-while-revalidate');
+    res.setHeader('Cache-Control', 's-maxage=10, stale-while-revalidate');
 
-    res.json ({
+    res.json({
         date: dynamicDate.toGMTString(),
-        subs: subs
+        inscritos: inscritos
     });
 }
 
