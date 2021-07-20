@@ -25,7 +25,7 @@ function Home() {
                             <i className='bx bx-search'></i>
                             <input type='text' placeholder='Search...' />        
                         </li>
-                        
+
                         <li>
                             <a href='#'>
                                 <i className='bx bx-grid-alt'></i>
